@@ -1,0 +1,19 @@
+我对代理池的理解：
+
+1、抓取网上的免费代理 -- 爬网页，拿数据
+2、存到数据库（推荐redis） -- 存文件也不是不可以，就是low而已
+3、方便调用 -- 例子里是网页刷新拿到值 -- 我直接查询数据库不行吗
+4、定时检测 -- 抓下来检测一次，后面定时检测
+
+检测方法：
+1、验证代理IP是否可用。原理是使用代理IP访问指定网站，如果返回状态为200，表示这个代理是可以使用的。
+
+2、telnet
+import telnetlib
+
+try:
+    telnetlib.Telnet('127.0.0.1', port='80', timeout=20)
+except:
+    print 'connect failed'
+else:
+    print 'success'
